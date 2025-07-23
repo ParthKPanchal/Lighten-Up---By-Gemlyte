@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product View</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .main-carousel .carousel-item img,
+    .thumb-carousel .thumb img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .thumb-carousel .thumb {
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 5px;
+      transition: transform 0.2s ease;
+    }
+
+    .thumb-carousel .thumb:hover {
+      transform: scale(1.05);
+    }
+
+    .active-thumb {
+      border: 2px solid #0c83e7;
+    }
+
+    .circle1, .circle2, .circle3 {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 10px;
+      border: 2px solid #ccc;
+      cursor: pointer;
+    }
+
+    .circle1 { background-color: #efefef; }
+    .circle2 { background-color: #516285; }
+    .circle3 { background-color: #4e2523; }
+
+    .button {
+      background-color: #0c83e7;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #075aaf;
+    }
+  </style>
+</head>
+<body>
+
+<section class="view-product py-5">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      
+      <!-- Left Column -->
+      <div class="col-lg-6">
+        <!-- Main Carousel -->
+        <div id="mainCarousel" class="carousel slide main-carousel mb-3" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active"><img src="image/view-product/product1.png" alt="fan"></div>
+            <div class="carousel-item"><img src="image/view-product/product2.png" alt="fan"></div>
+            <div class="carousel-item"><img src="image/view-product/product3.png" alt="fan"></div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="d-flex justify-content-between thumb-carousel">
+          <div class="thumb col-4"><img src="image/view-product/product1.png" alt="fan"></div>
+          <div class="thumb col-4"><img src="image/view-product/product2.png" alt="fan"></div>
+          <div class="thumb col-4"><img src="image/view-product/product3.png" alt="fan"></div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-lg-6">
+        <h1>Crompton Silent Pro Blossom Smart Ceiling Fan</h1>
+        <h4 class="text-muted mt-3">MRP ₹16,999.00</h4>
+        <p class="text-muted">Inclusive of all taxes</p>
+        <h3>Benefit</h3>
+        <p><i class="bi bi-cart-fill me-2"></i>Buy in store or online</p>
+        <p><i class="bi bi-hand-thumbs-up-fill me-2"></i>Top Rated Products</p>
+        <p><i class="bi bi-file-earmark-text-fill me-2"></i>Product Warranty</p>
+        <p><i class="bi bi-gear-wide-connected me-2"></i>Service and Installation</p>
+        <p class="mt-4">Color:</p>
+        <div class="mb-3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+        </div>
+
+        <button class="button">Buy Now</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const mainCarousel = document.querySelector("#mainCarousel");
+  const mainInstance = bootstrap.Carousel.getOrCreateInstance(mainCarousel);
+  const thumbs = document.querySelectorAll(".thumb");
+
+  function goToSlide(index) {
+    mainInstance.to(index);
+    setActiveThumb(index);
+  }
+
+  function setActiveThumb(index) {
+    thumbs.forEach((thumb, i) => {
+      if (i === index) {
+        thumb.classList.add("active-thumb");
+      } else {
+        thumb.classList.remove("active-thumb");
+      }
+    });
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => {
+      goToSlide(index);
+    });
+  });
+
+  mainCarousel.addEventListener("slid.bs.carousel", (e) => {
+    setActiveThumb(e.to);
+  });
+
+  // Initialize the first active thumbnail
+  setActiveThumb(0);
+</script>
+
+</body>
+</html>

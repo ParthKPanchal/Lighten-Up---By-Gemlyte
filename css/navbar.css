@@ -1,0 +1,26 @@
+.navbar-nav .nav-link {
+  transition: color 0.3s, background 0.3s;
+  border-radius: 5px;
+  color: black;
+}
+
+.nav-link{
+  color: black !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: black;
+  background-color: #f8f9fa;
+  text-decoration: underline;
+}
+
+.badge {
+  font-size: 0.7rem;
+}
+
+section:nth-of-type(2n+1){
+  background-color: #e6f4f1;
+}
+section:nth-of-type(2n){
+  background-color: #e6f4f1;
+}
